@@ -1,18 +1,24 @@
 #include "commonLibs.h"
 
+void logSessional(struct utmp *userSession){
+    while ( (userSession = getutent()) != NULL) {
+        if (userSession->ut_type == USER_PROCESS) printf(" %s   %s (%s)\n", userSession->ut_user, userSession->ut_line, userSession->ut_host);
+    }
+}
+
+
 void printUsers(){
     printf("### Sessions/users ### \n");
 
-    // Sessions/users
-    struct utmp *utmp_entry;
-    setutent();
-    while ( (utmp_entry = getutent()) != NULL) {
-        if (utmp_entry->ut_type == USER_PROCESS) {
-            printf(" %s\t %s (%s)\n", utmp_entry->ut_user, utmp_entry->ut_line, utmp_entry->ut_host);
-        }
-    }
-    endutent();
+    // get sessional information
+    struct utmp *userSession;
 
-    printf("---------------------------------------\n");
-    printf("Number of cores: %d\n", sysconf(_SC_NPROCESSORS_ONLN));
+    //open file
+    setutent();
+
+    logSessional(userSession);
+
+    //close file
+    endutent();
 }
+

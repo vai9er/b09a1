@@ -1,24 +1,29 @@
 #include "commonLibs.h"
 
 void printMemUsage() {
-    printf("Nbr of samples: %d -- every %d secs\n", NUM_SAMPLES, SLEEP_TIME);
+    printf("Number of samples: %d -- every %d secs\n", NUM_SAMPLES, SLEEP_TIME);
 
-    // Memory usage
-    struct sysinfo info;
-    sysinfo(&info);
-    long memory_total = info.totalram;
-    long memory_used = info.totalram - info.freeram;
-    printf("Memory usage: %lld kilobytes\n", memory_used / 1024);
+    //step 1: get system information
+    struct sysinfo systemInfo;
+    sysinfo(&systemInfo);
+    
+    // Get total and used memory
+    float memory_total = systemInfo.totalram;
+    float memory_used = systemInfo.totalram - systemInfo.freeram;
+
+    // Print memory usage in kilobytes
+    printf("Memory usage: %f kilobytes\n", memory_used / 1024);
     printf("---------------------------------------\n");
     printf("### Memory ### (Phys.Used/Tot -- Virtual Used/Tot)\n");
 
     for (int i = 0; i < NUM_SAMPLES; i++) {
-        sysinfo(&info);
-        memory_total = info.totalram;
-        memory_used = info.totalram - info.freeram;
-        printf("%lld GB / %lld GB  -- %lld GB / %lld GB\n", memory_used / (1024 * 1024), memory_total / (1024 * 1024), memory_used / (1024 * 1024), (memory_total + info.totalswap) / (1024 * 1024));
+
+        //use .2f as specifier- no more than 2 decimal places to mimic the handout
+        printf("%.2f GB / %.2f GB  -- %.2f GB / %.2f GB\n", memory_used / (1024 * 1024 * 1024), memory_total / (1024 * 1024 * 1024), memory_used / (1024 * 1024 * 1024), (memory_total + systemInfo.totalswap) / (1024 * 1024 * 1024));
         sleep(SLEEP_TIME);
     }
+
+
     printf("---------------------------------------\n");
 
 }
