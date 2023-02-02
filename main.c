@@ -8,7 +8,7 @@ int main() {
     printMemUsage();
     printUsers();
     logCores();
-
+    logCpuUsage();
     // System information
     printMachineInfo();
 }
