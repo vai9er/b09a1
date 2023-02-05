@@ -1,6 +1,6 @@
 #include "commonLibs.h"
 
-void printMemUsage() {
+void printMemUsage( int NUM_SAMPLES, int SLEEP_TIME) {
     printf("Number of samples: %d -- every %d secs\n", NUM_SAMPLES, SLEEP_TIME);
 
     //step 1: get system information
@@ -20,6 +20,7 @@ void printMemUsage() {
 
         //use .2f as specifier- no more than 2 decimal places to mimic the handout
         printf("%.2f GB / %.2f GB  -- %.2f GB / %.2f GB\n", memory_used / (1024 * 1024 * 1024), memory_total / (1024 * 1024 * 1024), memory_used / (1024 * 1024 * 1024), (memory_total + systemInfo.totalswap) / (1024 * 1024 * 1024));
+        
         sleep(SLEEP_TIME);
     }
 

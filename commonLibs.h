@@ -9,6 +9,3 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
-#define NUM_SAMPLES 10
-#define SLEEP_TIME 1
