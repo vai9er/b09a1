@@ -12,7 +12,11 @@ void printMemUsage( int NUM_SAMPLES, int SLEEP_TIME) {
     float memory_used = systemInfo.totalram - systemInfo.freeram;
 
     // Print memory usage in kilobytes
-    printf("Memory usage: %f kilobytes\n", memory_used / 1024);
+    struct rusage usage;
+    getrusage(RUSAGE_SELF, &usage);
+
+    long memory_usage_kb = usage.ru_maxrss;
+    printf("Memory usage: %ld kilobytes\n", memory_usage_kb);
     printf("---------------------------------------\n");
     printf("### Memory ### (Phys.Used/Tot -- Virtual Used/Tot)\n");
 
