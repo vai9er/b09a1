@@ -63,7 +63,7 @@ void refresh(int samples, int tdelay){
         float memory_used = systemInfo.totalram - systemInfo.freeram;
 
         // Print memory usage in kilobytes
-        printf("Memory usage: %f kilobytes\n", (memory_used / 1024)/1024);
+        printf("Memory usage: %.0f kilobytes\n", (memory_used / 1024)/1024);
         printf("---------------------------------------\n");
         printf("### Memory ### (Phys.Used/Tot -- Virtual Used/Tot)\n");
 
