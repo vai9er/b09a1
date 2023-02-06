@@ -1,0 +1,140 @@
+>>> ITERATION 1
+Number of samples: 5 -- every 1 secs
+Memory usage: 8339708.000000 kilobytes
+---------------------------------------
+### Memory ### (Phys.Used/Tot -- Virtual Used/Tot)
+7.95 GB / 15.04 GB  -- 7.95 GB / 15.04 GB
+
+
+
+
+
+
+
+
+
+### Sessions/users ### 
+ vai9er   :1 (:1)
+-------------------------------------
+Number of cores: 16
+CPU: 3.42%
+
+### System Information ### 
+SYSTEM NAME: Linux 
+NODE NAME: arch 
+RELEASE: 6.1.8-arch1-1 
+VERSION: #1 SMP PREEMPT_DYNAMIC Tue, 24 Jan 2023 21:07:04 +0000 
+MACHINE: x86_64 
+---------------------------------------
+>>> ITERATION 2
+Number of samples: 5 -- every 1 secs
+Memory usage: 8353460.000000 kilobytes
+---------------------------------------
+### Memory ### (Phys.Used/Tot -- Virtual Used/Tot)
+7.97 GB / 15.04 GB  -- 7.97 GB / 15.04 GB
+7.97 GB / 15.04 GB  -- 7.97 GB / 15.04 GB
+
+
+
+
+
+
+
+
+### Sessions/users ### 
+ vai9er   :1 (:1)
+-------------------------------------
+Number of cores: 16
+CPU: 1.04%
+
+### System Information ### 
+SYSTEM NAME: Linux 
+NODE NAME: arch 
+RELEASE: 6.1.8-arch1-1 
+VERSION: #1 SMP PREEMPT_DYNAMIC Tue, 24 Jan 2023 21:07:04 +0000 
+MACHINE: x86_64 
+---------------------------------------
+>>> ITERATION 3
+Number of samples: 5 -- every 1 secs
+Memory usage: 8345408.000000 kilobytes
+---------------------------------------
+### Memory ### (Phys.Used/Tot -- Virtual Used/Tot)
+7.96 GB / 15.04 GB  -- 7.96 GB / 15.04 GB
+7.96 GB / 15.04 GB  -- 7.96 GB / 15.04 GB
+7.96 GB / 15.04 GB  -- 7.96 GB / 15.04 GB
+
+
+
+
+
+
+
+### Sessions/users ### 
+ vai9er   :1 (:1)
+-------------------------------------
+Number of cores: 16
+CPU: 0.85%
+
+### System Information ### 
+SYSTEM NAME: Linux 
+NODE NAME: arch 
+RELEASE: 6.1.8-arch1-1 
+VERSION: #1 SMP PREEMPT_DYNAMIC Tue, 24 Jan 2023 21:07:04 +0000 
+MACHINE: x86_64 
+---------------------------------------
+>>> ITERATION 4
+Number of samples: 5 -- every 1 secs
+Memory usage: 8337708.000000 kilobytes
+---------------------------------------
+### Memory ### (Phys.Used/Tot -- Virtual Used/Tot)
+7.95 GB / 15.04 GB  -- 7.95 GB / 15.04 GB
+7.95 GB / 15.04 GB  -- 7.95 GB / 15.04 GB
+7.95 GB / 15.04 GB  -- 7.95 GB / 15.04 GB
+7.95 GB / 15.04 GB  -- 7.95 GB / 15.04 GB
+
+
+
+
+
+
+### Sessions/users ### 
+ vai9er   :1 (:1)
+-------------------------------------
+Number of cores: 16
+CPU: 0.91%
+
+### System Information ### 
+SYSTEM NAME: Linux 
+NODE NAME: arch 
+RELEASE: 6.1.8-arch1-1 
+VERSION: #1 SMP PREEMPT_DYNAMIC Tue, 24 Jan 2023 21:07:04 +0000 
+MACHINE: x86_64 
+---------------------------------------
+>>> ITERATION 5
+Number of samples: 5 -- every 1 secs
+Memory usage: 8337316.000000 kilobytes
+---------------------------------------
+### Memory ### (Phys.Used/Tot -- Virtual Used/Tot)
+7.95 GB / 15.04 GB  -- 7.95 GB / 15.04 GB
+7.95 GB / 15.04 GB  -- 7.95 GB / 15.04 GB
+7.95 GB / 15.04 GB  -- 7.95 GB / 15.04 GB
+7.95 GB / 15.04 GB  -- 7.95 GB / 15.04 GB
+7.95 GB / 15.04 GB  -- 7.95 GB / 15.04 GB
+
+
+
+
+
+### Sessions/users ### 
+ vai9er   :1 (:1)
+-------------------------------------
+Number of cores: 16
+CPU: 0.98%
+
+### System Information ### 
+SYSTEM NAME: Linux 
+NODE NAME: arch 
+RELEASE: 6.1.8-arch1-1 
+VERSION: #1 SMP PREEMPT_DYNAMIC Tue, 24 Jan 2023 21:07:04 +0000 
+MACHINE: x86_64 
+---------------------------------------

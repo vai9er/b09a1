@@ -5,6 +5,41 @@
 #include "machineInfo.c"
 #include "parseArg.c"
 
+
+void log_cpu_usage() {
+    static clock_t last_cpu_time = 0;
+    static clock_t last_elapsed_time = 0;
+
+    struct tms current_cpu_times;
+    if (times(&current_cpu_times) == (clock_t)-1) {
+        perror("times");
+        return;
+    }
+
+    clock_t current_cpu_time = current_cpu_times.tms_utime + current_cpu_times.tms_stime;
+    clock_t current_elapsed_time = clock();
+
+    if (last_cpu_time == 0) {
+        last_cpu_time = current_cpu_time;
+        last_elapsed_time = current_elapsed_time;
+        return;
+    }
+
+    clock_t elapsed_time = current_elapsed_time - last_elapsed_time;
+    clock_t cpu_time = current_cpu_time - last_cpu_time;
+
+    int usage = (int)(100.0 * ((double)cpu_time / (double)elapsed_time));
+    printf("CPU usage: %d%%\n", usage);
+
+    last_cpu_time = current_cpu_time;
+    last_elapsed_time = current_elapsed_time;
+}
+
+void clear_screen() {
+  printf("\033[2J");  // clear entire screen
+  printf("\033[%d;%dH", 0, 0);  // move cursor to the top-left corner
+}
+
 void seqFlag(int samples, int tdelay){
     int j = 0;
     for (int i = 0; i < samples; i++) {
@@ -37,49 +72,46 @@ void seqFlag(int samples, int tdelay){
         logCpuUsage();
         printMachineInfo();
         sleep(tdelay);
+        printf("\n");
     }
 }
 
-void printMe( int NUM_SAMPLES, int SLEEP_TIME) {
-    printf("Number of samples: %d -- every %d secs\n", NUM_SAMPLES, SLEEP_TIME);
+void printMe(int samples, int tdelay){
+    clear_screen();
+    int j = 0;
+    for (int i = 0; i < samples; i++) {
+        printf("Number of samples: %d -- every %d secs\n", samples, tdelay);
 
-    //step 1: get system information
-    struct sysinfo systemInfo;
-    sysinfo(&systemInfo);
+        //step 1: get system information
+        struct sysinfo systemInfo;
+        sysinfo(&systemInfo);
     
-    // Get total and used memory
-    float memory_total = systemInfo.totalram;
-    float memory_used = systemInfo.totalram - systemInfo.freeram;
+        // Get total and used memory
+        float memory_total = systemInfo.totalram;
+        float memory_used = systemInfo.totalram - systemInfo.freeram;
 
-    // Print memory usage in kilobytes
-
-    for (int i = 0; i < NUM_SAMPLES; i++) {
-        struct rusage usage;
-        getrusage(RUSAGE_SELF, &usage);
-
-        long memory_usage_kb = usage.ru_maxrss;
-        printf("Memory usage: %ld kilobytes\n", memory_usage_kb);
+        // Print memory usage in kilobytes
+        printf("Memory usage: %f kilobytes\n", memory_used / 1024);
         printf("---------------------------------------\n");
         printf("### Memory ### (Phys.Used/Tot -- Virtual Used/Tot)\n");
-        printf("\033[2J"); 
-        printf("\033[%d;%dH", 0, 0); 
-        for (int j = 0; j < i; j++){
-            printf("\n");
+
+
+        for (j = 0; j < i; j++){
+            printf("%.2f GB / %.2f GB  -- %.2f GB / %.2f GB\n", memory_used / (1024 * 1024 * 1024), memory_total / (1024 * 1024 * 1024), memory_used / (1024 * 1024 * 1024), (memory_total + systemInfo.totalswap) / (1024 * 1024 * 1024));
         }
         printf("%.2f GB / %.2f GB  -- %.2f GB / %.2f GB\n", memory_used / (1024 * 1024 * 1024), memory_total / (1024 * 1024 * 1024), memory_used / (1024 * 1024 * 1024), (memory_total + systemInfo.totalswap) / (1024 * 1024 * 1024));
-        for (int j = i; j < 9; j++){
+        for (j = i; j < 9; j++){
             printf("\n");
         }
         printUsers();
         logCores();
-        logCpuUsage();
         printMachineInfo();
-        sleep(SLEEP_TIME);
+        logCpuUsage();
+        clear_screen();
+        
+
+        sleep(tdelay);
     }
-
-
-    printf("---------------------------------------\n");
-
 }
 
 int main(int argc, char** argv){
