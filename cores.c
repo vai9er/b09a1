@@ -4,7 +4,7 @@
 void logCores(){
 
     printf("-------------------------------------\n");
-    printf("Number of cores: %d\n", sysconf(_SC_NPROCESSORS_ONLN));
+    printf("Number of cores: %ld\n", sysconf(_SC_NPROCESSORS_ONLN));
     
 }
 
@@ -38,7 +38,7 @@ void get_stats(struct cpustat *st, int cpunum)
     int lskip = cpunum+1;
     skip_lines(fp, lskip);
     char cpun[255];
-    fscanf(fp, "%s %d %d %d %d %d %d %d", cpun, &(st->t_user), &(st->t_nice), 
+    fscanf(fp, "%s %ld %ld %ld %ld %ld %ld %ld", cpun, &(st->t_user), &(st->t_nice), 
         &(st->t_system), &(st->t_idle), &(st->t_iowait), &(st->t_irq),
         &(st->t_softirq));
     fclose(fp);
@@ -70,6 +70,6 @@ void logCpuUsage(){
     get_stats(&st0_0, -1);
     sleep(1);
     get_stats(&st0_1, -1);
-    printf("CPU: %lf%%\n\n", calculate_load(&st0_0, &st0_1));
+    printf("CPU: %.2lf%%\n\n", calculate_load(&st0_0, &st0_1));
     
 }
