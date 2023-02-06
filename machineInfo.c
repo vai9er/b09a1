@@ -1,6 +1,7 @@
 #include "commonLibs.h"
 
 
+// This function prints the machine information of the system. using the uname() function, we can get the system information and print it out.
 void printMachineInfo(){
 
     printf("### System Information ### \n");

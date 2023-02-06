@@ -15,6 +15,7 @@ void printMemUsage( int NUM_SAMPLES, int SLEEP_TIME) {
     struct rusage usage;
     getrusage(RUSAGE_SELF, &usage);
 
+    // Print memory usage in kilobytes
     long memory_usage_kb = usage.ru_maxrss;
     printf("Memory usage: %ld kilobytes\n", memory_usage_kb);
     printf("---------------------------------------\n");
