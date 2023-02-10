@@ -53,7 +53,7 @@ void refresh(int samples, int tdelay){
     int j = 0;
     for (int i = 0; i < samples; i++) {
         printf("Number of samples: %d -- every %d secs\n", samples, tdelay);
-
+        
         //step 1: get system information
         struct sysinfo systemInfo;
         sysinfo(&systemInfo);
