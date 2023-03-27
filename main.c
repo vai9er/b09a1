@@ -4,7 +4,7 @@
 #include "cores.c"
 #include "machineInfo.c"
 #include "parseArg.c"
-
+#include "graphical.c"
 //clears the screen with ANSI escape codes
 void clear_screen() {
   printf("\033[2J");  // clear entire screen
@@ -123,7 +123,7 @@ int main(int argc, char** argv){
     } 
     else {
         //refresh-like output
-        refresh(samples,tdelay);
+        refresh2(samples,tdelay);
 
     }
 }
