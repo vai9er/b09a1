@@ -1,4 +1,36 @@
 #include "commonLibs.h"
+#define PROC_STAT "/proc/stat"
+
+void get_cpu_times(unsigned long long *idle, unsigned long long *total) {
+    FILE *fp;
+    unsigned long long user, nice, sys, irq, softirq, steal;
+    unsigned long long ioWait;
+
+    fp = fopen(PROC_STAT, "r");
+    if (fp == NULL) {
+        perror("Failed to open " PROC_STAT);
+        exit(EXIT_FAILURE);
+    }
+
+    fscanf(fp, "cpu %llu %llu %llu %llu %llu %llu %llu %llu", &user, &nice, &sys, idle, &ioWait, &irq, &softirq, &steal);
+    fclose(fp);
+
+    *total = user + nice + sys + *idle + ioWait + irq + softirq + steal;
+}
+
+double get_cpu_utilization() {
+    unsigned long long idle1, total1;
+    unsigned long long idle2, total2;
+
+    get_cpu_times(&idle1, &total1);
+    sleep(1);
+    get_cpu_times(&idle2, &total2);
+
+    double idleDelta = idle2 - idle1;
+    double totalDelta = total2 - total1;
+
+    return 1.0 - idleDelta / totalDelta;
+}
 
 void refresh2(int samples, int tdelay){
     clear_screen();
@@ -6,6 +38,7 @@ void refresh2(int samples, int tdelay){
     float prev_memory_used = 0;
     float memory_used[samples];
     for (int i = 0; i < samples; i++) {
+        double cpu_utilization = 100 * get_cpu_utilization();
         printf("Number of samples: %d -- every %d secs\n", samples, tdelay);
         
         //step 1: get system information
@@ -50,15 +83,16 @@ void refresh2(int samples, int tdelay){
         for (j = i+1; j < samples; j++){
             printf("\n");
         }
-        
+        printf("total cpu use = %.2f%%\n", cpu_utilization);
+
         //print the rest of the information
         printUsers();
-        logCores();
+        
+        ///FINISH THIS PART
+        
         printMachineInfo();
-        logCpuUsage();
         
         sleep(tdelay);
-        
         clear_screen();
     }
 }
