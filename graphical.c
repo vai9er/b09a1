@@ -233,7 +233,7 @@ void refresh2(int samples, int tdelay){
     cpu_sample_t cpu_utilization[samples];
     for (int i = 0; i < samples; i++) {
         cpu_utilization[i].utilization = 100 * get_cpu_utilization(tdelay);
-        cpu_utilization[i].num_bars = (int)(cpu_utilization[i].utilization / 0.20);
+        cpu_utilization[i].num_bars = (int)(cpu_utilization[i].utilization / 0.32);
         printf("Nbr of samples: %d -- every %d secs\n", samples, tdelay);
         
         //step 1: get system information
